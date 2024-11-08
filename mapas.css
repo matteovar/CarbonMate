@@ -56,11 +56,14 @@ body {
 }
 
 #map {
-    top: 75px;
-    height: 673px;
-    width: 1660px;
+    position: absolute;
+    top: 75px; /* Mantém a distância do topo */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: calc(100vh - 125px); /* Subtrai a altura do header */
+    width: 100%;
 }
-
 footer {
     background-color: #333;
     color: #fff;

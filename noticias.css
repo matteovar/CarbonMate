@@ -1,58 +1,90 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
 
-body{
+body {
     min-height: 100vh;
-    background-color: white;
+    background: url(sdr/background.png);
     background-size: cover;
     background-position: center;
+    font-family: Arial, sans-serif;
 }
 
-.header{
+.header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     padding: 20px 100px;
-    background-color: rgba(128, 128, 128, 0.427);
+    background-color: transparent;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
 }
 
-.logo{
+.logo {
     font-size: 32px;
-    color: green;
+    color: white;
     text-decoration: none;
     font-weight: 700;
 }
-.navigation a{
+
+.navigation a {
     position: relative;
     font-size: 18px;
-    color: green;
+    color: white;
     font-weight: 500;
     text-decoration: none;
     margin-left: 20px;
 }
 
-.navigation a::before{
+.navigation a::before {
     content: '';
     position: absolute;
     top: 100%;
     left: 0;
     width: 0%;
     height: 2%;
-    background-color: green;
+    background-color: white;
     transition: .3s;
 }
 
-.navigation a:hover::before{
+.navigation a:hover::before {
     width: 100%;
+}
+
+#news-container {
+    margin-top: 100px; /* Espaço para o header */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.article {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.article h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.article p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.article a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 footer {
@@ -60,8 +92,7 @@ footer {
     color: #fff;
     text-align: center;
     padding: 15px;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
 }
-

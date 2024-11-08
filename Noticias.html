@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarbonMate</title>
+    <title>CarbonMate - Notícias</title>
     <link rel="stylesheet" href="noticias.css">
 </head>
 <body>
@@ -11,17 +11,51 @@
         <a href="./index.html" class="logo">CarbonMate</a>
         
         <nav class="navigation">
-                <a href="./Carbono.html">Carbono</a>
-                <a href="./Calculadora.html">Calculadora</a>
-                <a href="./Mapas.html">Mapas</a>
-                <a href="./Noticias.html">Noticias</a>
-                <a href="#">Sign In</a>
-                <a href="#">Register</a>
+            <a href="./Carbono.html">Carbono</a>
+            <a href="./Calculadora.html">Calculadora</a>
+            <a href="./Mapas.html">Mapas</a>
+            <a href="./Noticias.html">Noticias</a>
+            <a href="#">Sign In</a>
+            <a href="#">Register</a>
         </nav>
     </header>
-        <footer>
-            <p>&copy; 2023 CarbonMate. Todos os direitos reservados.</p>
-        </footer>
+
+    <div id="news-container">
+        <!-- Notícias serão inseridas aqui -->
     </div>
+
+    <footer>
+        <p>&copy; 2023 CarbonMate. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const newsContainer = document.getElementById('news-container');
+
+        fetch(`https://newsapi.org/v2/everything?q=carbon-emission&apiKey=f46e929f71c64db3ad7e6f4c1fc19b1b`)
+            .then(response => response.json())
+            .then(data => {
+                data.articles.forEach(article => {
+                    const articleElement = document.createElement('div');
+                    articleElement.classList.add('article');
+
+                    const titleElement = document.createElement('h2');
+                    titleElement.textContent = article.title;
+
+                    const descriptionElement = document.createElement('p');
+                    descriptionElement.textContent = article.description;
+
+                    const linkElement = document.createElement('a');
+                    linkElement.href = article.url;
+                    linkElement.textContent = 'Leia mais';
+
+                    articleElement.appendChild(titleElement);
+                    articleElement.appendChild(descriptionElement);
+                    articleElement.appendChild(linkElement);
+
+                    newsContainer.appendChild(articleElement);
+                });
+            })
+            .catch(error => console.error('Erro ao buscar notícias:', error));
+    </script>
 </body>
 </html>
