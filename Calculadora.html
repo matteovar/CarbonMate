@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarbonMate</title>
+    <title>CarbonMate - Calculadora</title>
     <link rel="stylesheet" href="calculadora.css">
 </head>
 <body>
@@ -11,131 +11,24 @@
         <a href="./index.html" class="logo">CarbonMate</a>
         
         <nav class="navigation">
-                <a href="./Carbono.html">Carbono</a>
-                <a href="./Calculadora.html">Calculadora</a>
-                <a href="./Mapas.html">Mapas</a>
-                <a href="./Noticias.html">Noticias</a>
-                <a href="#">Sign In</a>
-                <a href="#">Register</a>
+            <a href="./Carbono.html">Carbono</a>
+            <a href="./Calculadora.html">Calculadora</a>
+            <a href="./Mapas.html">Mapas</a>
+            <a href="./Noticias.html">Noticias</a>
+            <a href="#">Sign In</a>
+            <a href="#">Register</a>
         </nav>
     </header>
+
     <div class="container">
-        <div id="question1" class="question-container">
-            <h1>Em qual estado você mora?</h1>
-            <p>Os valores podem variar de acordo com a sua região.</p>
-            <select id="estado" name="estado">
-                <option value="AC">Acre</option>
-                <option value="AL">Alagoas</option>
-                <option value="AP">Amapá</option>
-                <option value="AM">Amazonas</option>
-                <option value="BA">Bahia</option>
-                <option value="CE">Ceará</option>
-                <option value="DF">Distrito Federal</option>
-                <option value="ES">Espírito Santo</option>
-                <option value="GO">Goiás</option>
-                <option value="MA">Maranhão</option>
-                <option value="MT">Mato Grosso</option>
-                <option value="MS">Mato Grosso do Sul</option>
-                <option value="MG">Minas Gerais</option>
-                <option value="PA">Pará</option>
-                <option value="PB">Paraíba</option>
-                <option value="PR">Paraná</option>
-                <option value="PE">Pernambuco</option>
-                <option value="PI">Piauí</option>
-                <option value="RJ">Rio de Janeiro</option>
-                <option value="RN">Rio Grande do Norte</option>
-                <option value="RS">Rio Grande do Sul</option>
-                <option value="RO">Rondônia</option>
-                <option value="RR">Roraima</option>
-                <option value="SC">Santa Catarina</option>
-                <option value="SP">São Paulo</option>
-                <option value="SE">Sergipe</option>
-                <option value="TO">Tocantins</option>
-            </select>
-            <button type="button" onclick="showQuestion2()">AVANÇAR</button>
-        </div>
-
-        <div id="question2" class="question-container" style="display: none;">
-            <h1>Moradia</h1>
-            <p>Há quantas pessoas (incluindo você) morando em sua residência?</p>
-            <input type="number" id="pessoas" name="pessoas" min="1" max="10">
-            <button type="button" onclick="showQuestion3()">AVANÇAR</button>
-        </div>
-
-        <div id="question3" class="question-container" style="display: none;">
-            <h1>Gás</h1>
-            <p>Na sua residência, utiliza-se botijão (GLP) ou Gás encanado?</p>
-            <div class="gas-options">
-                <div>
-                    <input type="radio" id="botijao" name="gas" value="botijao">
-                    <label for="botijao">Botijão (GLP)</label>
-                </div>
-                <div>
-                    <input type="radio" id="encanado" name="gas" value="encanado">
-                    <label for="encanado">Gás encanado</label>
-                </div>
-                <div>
-                    <input type="radio" id="nenhum" name="gas" value="nenhum">
-                    <label for="nenhum">Nenhum</label>
-                </div>
-            </div>
-            <button type="button" onclick="showQuestion4()">AVANÇAR</button>
-        </div>
-
-        <div id="question4" class="question-container" style="display: none;">
-            <h1>Gás</h1>
-            <p>Em média, quanto você gasta com gás por mês?</p>
-            <div class="gas-expense-options">
-                <div>
-                    <input type="radio" id="nada" name="gas-expense" value="0">
-                    <label for="nada">Nada (R$0,00)</label>
-                </div>
-                <div>
-                    <input type="radio" id="muito-pouco" name="gas-expense" value="21">
-                    <label for="muito-pouco">Muito pouco (R$ 21,00)</label>
-                </div>
-                <div>
-                    <input type="radio" id="pouco" name="gas-expense" value="35">
-                    <label for="pouco">Pouco (R$ 35,00)</label>
-                </div>
-                <div>
-                    <input type="radio" id="moderadamente" name="gas-expense" value="63">
-                    <label for="moderadamente">Moderadamente (R$ 63,00)</label>
-                </div>
-                <div>
-                    <input type="radio" id="bastante" name="gas-expense" value="137">
-                    <label for="bastante">Bastante (R$ 137,00)</label>
-                </div>
-            </div>
-            <p>Sabe o valor exato?</p>
-            <input type="number" id="gas-expense-exact" name="gas-expense-exact" min="0">
-            <button type="button" onclick="submitForm()">AVANÇAR</button>
+        <h1>Calculadora de Carbono</h1>
+        <div class="iframe-container">
+            <iframe scrolling="yes" src="https://calculator.carbonfootprint.com/calculator.aspx"></iframe>
         </div>
     </div>
 
-    <script>
-        function showQuestion2() {
-            document.getElementById('question1').style.display = 'none';
-            document.getElementById('question2').style.display = 'block';
-        }
-
-        function showQuestion3() {
-            document.getElementById('question2').style.display = 'none';
-            document.getElementById('question3').style.display = 'block';
-        }
-
-        function showQuestion4() {
-            document.getElementById('question3').style.display = 'none';
-            document.getElementById('question4').style.display = 'block';
-        }
-
-        function submitForm() {
-            // Aqui você pode adicionar a lógica para processar os dados do formulário
-            alert('Formulário enviado!');
-        }
-    </script>
     <footer>
         <p>&copy; 2023 CarbonMate. Todos os direitos reservados.</p>
     </footer>
-    </body>
+</body>
 </html>
