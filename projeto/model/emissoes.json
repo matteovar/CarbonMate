@@ -1,0 +1,330 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "São Paulo",
+                "emission": 156,
+                "radius": 200000
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-48.740270, -21.848141]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Rio de Janeiro",
+                "emission": 73,
+                "radius": 100000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-42.689231,-22.345564]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Minas Gerais",
+                "emission": 168,
+                "radius": 300000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-44.710919,-18.841610]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Pará",
+                "emission": 447,
+                "radius": 500000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-52.812832,-4.512094]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Mato Grosso",
+                "emission": 269,
+                "radius": 300000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-55.775271,-13.352585]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Rondonia",
+                "emission": 137,
+                "radius": 150000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-62.916040,-10.459249 ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Amazonas",
+                "emission": 138,
+                "radius": 450000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-64.430749,-4.166800]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Maranhão",
+                "emission": 117,
+                "radius": 200000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-45.460826, -4.526407 ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Rio Grande do Sul",
+                "emission": 107,
+                "radius": 200000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-53.106498,-29.591733 ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Goiás",
+                "emission": 92,
+                "radius": 150000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-49.787831,-16.108886 ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Paraná",
+                "emission": 86,
+                "radius": 150000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-51.685782,-24.448542 ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Mato Grosso do Sul",
+                "emission": 81,
+                "radius": 170000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-54.829216,-20.459472 ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Bahia",
+                "emission": 81,
+                "radius": 250000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [ -41.464930,-12.676946]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Roraima",
+                "emission": 61,
+                "radius": 120000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [ -61.205929,2.121656]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Santa Catarina",
+                "emission": 59,
+                "radius": 100000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-50.704027,-27.091722]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Tocantins",
+                "emission": 56,
+                "radius": 150000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [ -48.303647,-10.148954]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Acre",
+                "emission": 43,
+                "radius": 130000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [ -70.275402,-8.903437]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Espírito Santo",
+                "emission": 33,
+                "radius": 100000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [ -40.611496,-19.735923]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Ceará",
+                "emission": 28,
+                "radius": 130000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-39.446324,-5.351116]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Pernambuco",
+                "emission": 25,
+                "radius": 90000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-38.296224,-8.547579]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Piauí",
+                "emission": 15,
+                "radius": 150000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-43.106087,-8.085472]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Paraíba",
+                "emission": 12,
+                "radius": 90000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-35.993025,-7.028258]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Sergipe",
+                "emission": 10,
+                "radius": 90000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-37.361618,-10.947045]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Rio Grande do Norte",
+                "emission": 9.9,
+                "radius": 90000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-36.390684,-5.303214]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Alagoas",
+                "emission": 9,
+                "radius": 90000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-35.948371,-9.492508]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Distrito Federal",
+                "emission": 7,
+                "radius": 90000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-47.701510,-15.698401]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Amapá",
+                "emission": 4,
+                "radius": 90000 
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-51.996827,1.645712]
+            }
+        }
+
+    ]
+}
