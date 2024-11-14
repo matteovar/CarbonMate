@@ -30,29 +30,39 @@
     <script>
         const newsContainer = document.getElementById('news-container');
 
-        fetch(`https://newsapi.org/v2/everything?q=carbon emission&apiKey=f46e929f71c64db3ad7e6f4c1fc19b1b&language=en&pageSize=10&sortBy=popularity&status=ok`)
+        fetch(`https://newsapi.org/v2/everything?q=carbon-dioxide-emission&apiKey=f46e929f71c64db3ad7e6f4c1fc19b1b&language=en&pageSize=10&sortBy=popularity&status=ok&urlToImage`)
             .then(response => response.json())
             .then(data => {
-                data.articles.forEach(article => {
-                    const articleElement = document.createElement('div');
-                    articleElement.classList.add('article');
+                if (data.status === 'ok') {
+                    data.articles.forEach(article => {
+                        const articleElement = document.createElement('div');
+                        articleElement.classList.add('article');
+                        
+                        const imageElement = document.createElement('img');
+                        imageElement.src = article.urlToImage || 'placeholder-image.jpg'; // Use uma imagem padrão se a URL da imagem estiver ausente
+                        imageElement.alt = article.title;
+                        imageElement.classList.add('article-image');
 
-                    const titleElement = document.createElement('h2');
-                    titleElement.textContent = article.title;
+                        const titleElement = document.createElement('h2');
+                        titleElement.textContent = article.title;
 
-                    const descriptionElement = document.createElement('p');
-                    descriptionElement.textContent = article.description;
+                        const descriptionElement = document.createElement('p');
+                        descriptionElement.textContent = article.description;
 
-                    const linkElement = document.createElement('a');
-                    linkElement.href = article.url;
-                    linkElement.textContent = 'Leia mais';
+                        const linkElement = document.createElement('a');
+                        linkElement.href = article.url;
+                        linkElement.textContent = 'Leia mais';
 
-                    articleElement.appendChild(titleElement);
-                    articleElement.appendChild(descriptionElement);
-                    articleElement.appendChild(linkElement);
+                        articleElement.appendChild(imageElement);
+                        articleElement.appendChild(titleElement);
+                        articleElement.appendChild(descriptionElement);
+                        articleElement.appendChild(linkElement);
 
-                    newsContainer.appendChild(articleElement);
-                });
+                        newsContainer.appendChild(articleElement);
+                    });
+                } else {
+                    console.error('Erro ao buscar notícias:', data.message);
+                }
             })
             .catch(error => console.error('Erro ao buscar notícias:', error));
     </script>

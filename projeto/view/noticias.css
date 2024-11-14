@@ -12,7 +12,6 @@ body{
 }
 
 .header {
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -56,17 +55,33 @@ body{
 }
 
 #news-container {
-    margin-top: 60px; /* Espaço para o header */
+    margin-top: -10px; /* Espaço para o header */
+    margin-bottom: 50px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: center; /* Centraliza as caixas horizontalmente */
 }
 
 .article {
     background-color: #fff;
     padding: 15px;
     border-radius: 8px;
+    width: 80%; /* Define a largura da caixa */
+    max-width: 900px; /* Define uma largura máxima para evitar que fique muito larga */
+    margin: 0 auto; /* Centraliza a caixa horizontalmente */
+}
+
+.article-image {
+    width: 75%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: block; /* Adiciona esta linha */
+    margin-left: auto; /* Adiciona esta linha */
+    margin-right: auto;
 }
 
 .article h2 {
@@ -87,6 +102,7 @@ body{
 
 footer {
     background-color: #333;
+    position: fixed;
     left: 0;
     padding: 15px;
     bottom: 0;
