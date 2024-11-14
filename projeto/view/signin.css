@@ -1,0 +1,110 @@
+/* Estilo para formulários */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: url("/projeto/assets/image.png") no-repeat center center fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+.header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 32px;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.navigation a {
+    position: relative;
+    font-size: 18px;
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.navigation a::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0%;
+    height: 2%;
+    background-color: white;
+    transition: .3s;
+}
+
+.navigation a:hover::before {
+    width: 100%;
+}
+
+
+.content {
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+    margin-top: 10%;
+    margin-left: 39%;
+    width: 300px;
+    height: 300px;
+    background-color: rgba(255, 255, 255, 0.8); /* Adicione um fundo para melhorar a legibilidade */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-group button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-group button:hover {
+    background-color: #555;
+}
+
+footer {
+    background-color: #333;
+    position: fixed;
+    left: 0;
+    padding: 15px;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
