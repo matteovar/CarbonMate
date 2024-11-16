@@ -21,8 +21,8 @@
     </header>
 
     <section class="content">
-        <h1>Cadatro</h1>
-        <form action="#" method="post">
+        <h1>Cadastro</h1>
+        <form id="registerForm">
             <div class="form-group">
                 <label for="name">Nome:</label>
                 <input type="text" id="name" name="name" required>
@@ -36,18 +36,71 @@
                 <input type="password" id="password" name="password" required>
             </div>
             <div class="form-group">
-                <label for="confirm-password">Confirmacao de senha:</label>
+                <label for="confirm-password">Confirmação de Senha:</label>
                 <input type="password" id="confirm-password" name="confirm-password" required>
             </div>
             <div class="form-group">
                 <button type="submit">Cadastrar</button>
             </div>
         </form>
-        <p>Ja tem uma conta? <a href="./signin.html">Entrar aqui</a></p>
+        <p>Já tem uma conta? <a href="./signin.html">Entrar aqui</a></p>
     </section>
 
     <footer>
         <p>&copy; 2023 CarbonMate. Todos os direitos reservados.</p>
     </footer>
+
+    <!-- Elemento de mensagem de feedback -->
+    <div id="message"></div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (password !== confirmPassword) {
+                showMessage('As senhas não coincidem.', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:5000/api/users/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showMessage(data.message, 'success');
+                    setTimeout(() => {
+                        window.location.href = './signin.html';
+                    }, 2000); // Redireciona após 2 segundos
+                } else {
+                    showMessage(data.message || 'Erro ao registrar!', 'error');
+                }
+            } catch (error) {
+                showMessage('Erro ao se conectar com o servidor!', 'error');
+            }
+        });
+
+        function showMessage(message, type) {
+            const messageElement = document.getElementById('message');
+            messageElement.textContent = message;
+            messageElement.style.display = 'block';
+            messageElement.style.backgroundColor = type === 'success' ? '#4CAF50' : '#f44336';
+
+            setTimeout(() => {
+                messageElement.style.display = 'none';
+            }, 2000); // Esconde a mensagem após 3 segundos
+        }
+    </script>
 </body>
 </html>

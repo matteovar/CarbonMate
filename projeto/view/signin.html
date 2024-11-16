@@ -22,7 +22,7 @@
 
     <section class="content">
         <h1>Login</h1>
-        <form action="#" method="post">
+        <form id="loginForm">
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
@@ -35,11 +35,60 @@
                 <button type="submit">Entrar</button>
             </div>
         </form>
-        <p>Nao tem uma conta? <a href="./register.html">Criar aqui</a></p>
+        <p>Não tem uma conta? <a href="./register.html">Criar aqui</a></p>
     </section>
 
     <footer>
         <p>&copy; 2023 CarbonMate. Todos os direitos reservados.</p>
     </footer>
+
+    <!-- Elemento de mensagem de feedback -->
+    <div id="message"></div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('http://localhost:5000/api/users/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showMessage('Login bem-sucedido!', 'success');
+                    // Armazenar o token no localStorage ou sessionStorage
+                    localStorage.setItem('token', data.token);
+                    setTimeout(() => {
+                        // Redirecionar para a página principal ou outra página
+                        window.location.href = './index.html';
+                    }, 2000); // Redireciona após 2 segundos
+                } else {
+                    showMessage(data.message || 'Erro ao fazer login!', 'error');
+                }
+            } catch (error) {
+                showMessage('Erro ao se conectar com o servidor!', 'error');
+            }
+        });
+
+        function showMessage(message, type) {
+            const messageElement = document.getElementById('message');
+            messageElement.textContent = message;
+            messageElement.style.display = 'block';
+            messageElement.style.backgroundColor = type === 'success' ? '#4CAF50' : '#f44336';
+
+            setTimeout(() => {
+                messageElement.style.display = 'none';
+            }, 3000); // Esconde a mensagem após 3 segundos
+        }
+    </script>
 </body>
 </html>
