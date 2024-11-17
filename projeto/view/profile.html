@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - CarbonMate</title>
+    <link rel="stylesheet" href="./user-menu.css">
+</head>
+<body>
+    <header class="header">
+        <a href="./index.html" class="logo">CarbonMate</a>
+        
+        <nav id="navigation" class="navigation">
+            <a href="./Carbono.html">Carbono</a>
+            <a href="./Calculadora.html">Calculadora</a>
+            <a href="./Mapas.html">Mapas</a>
+            <a href="./Noticias.html">Noticias</a>
+            <a href="./profile.html">Perfil</a>
+            <button id="logoutBtn">Logout</button>
+        </nav>
+    </header>
+
+    <section class="content4">
+        <h1>Perfil</h1>
+        <div class="profile-info">
+            <div class="form-group">
+                <label for="name">Nome:</label>
+                <p id="name"></p>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <p id="email"></p>
+            </div>
+        </div>
+
+        <h2>Histórico de Pegadas de Carbono</h2>
+        <iframe src="https://calculator.carbonfootprint.com/calculator.aspx?tab=8" width="100%" height="600px" style="border:none;">
+            Seu navegador não suporta iframes.
+        </iframe> <!-- Aqui está o iframe para carregar o site -->
+    </section>
+
+    <footer>
+        <p>&copy; 2023 CarbonMate. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('token');
+            const navigation = document.getElementById('navigation');
+
+            if (token) {
+                // Se o usuário estiver logado, esconde o menu de login/registro e exibe o menu do usuário
+                navigation.innerHTML = `
+                    <a href="./Carbono.html">Carbono</a>
+                    <a href="./Calculadora.html">Calculadora</a>
+                    <a href="./Mapas.html">Mapas</a>
+                    <a href="./Noticias.html">Noticias</a>
+                    <a href="./profile.html">Perfil</a>
+                    <button id="logoutBtn">Logout</button>
+                `;
+
+                try {
+                    const response = await fetch('http://localhost:5000/api/users/profile', {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,  // Passa o token JWT no cabeçalho
+                        },
+                    });
+
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        console.error('Erro:', errorData);
+                        throw new Error('Erro ao carregar os dados do perfil');
+                    }
+
+                    const userData = await response.json();  // Recebe os dados do usuário
+                    document.getElementById('name').textContent = userData.name;
+                    document.getElementById('email').textContent = userData.email;
+
+                    
+
+                } catch (error) {
+                    console.error('Erro:', error);
+                    alert('Erro ao carregar os dados do perfil.');
+                }
+            } else {
+                // Se o usuário não estiver logado, exibe o menu de login/registro
+                navigation.innerHTML = `
+                    <a href="./Carbono.html">Carbono</a>
+                    <a href="./Calculadora.html">Calculadora</a>
+                    <a href="./Mapas.html">Mapas</a>
+                    <a href="./Noticias.html">Noticias</a>
+                    <a href="./signin.html">Entrar</a>
+                    <a href="./register.html">Cadastrar</a>
+                `;
+            }
+
+            // Adiciona o evento de logout
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                localStorage.removeItem('token');
+                window.location.href = './index.html';
+            });
+        });
+    </script>
+</body>
+</html>

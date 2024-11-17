@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CarbonMate - Notícias</title>
     <link rel="stylesheet" href="noticias.css">
+    <link rel="stylesheet" href="./user-menu.css">
 </head>
 <body>
     <header class="header">
         <a href="./index.html" class="logo">CarbonMate</a>
         
-        <nav class="navigation">
+        <nav id="navigation" class="navigation">
             <a href="./Carbono.html">Carbono</a>
             <a href="./Calculadora.html">Calculadora</a>
             <a href="./Mapas.html">Mapas</a>
@@ -65,6 +66,79 @@
                 }
             })
             .catch(error => console.error('Erro ao buscar notícias:', error));
+
+            document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('token');
+    const navigation = document.getElementById('navigation');
+
+    if (token) {
+        // Se o usuário estiver logado, esconde o menu de login/registro e exibe o menu do usuário
+        navigation.innerHTML = `
+            <a href="./Carbono.html">Carbono</a>
+            <a href="./Calculadora.html">Calculadora</a>
+            <a href="./Mapas.html">Mapas</a>
+            <a href="./Noticias.html">Noticias</a>
+            <a href="./profile.html">Perfil</a>
+            <button id="logoutBtn">Logout</button>
+        `;
+    } else {
+        // Se o usuário não estiver logado, exibe o menu de login/registro
+        navigation.innerHTML = `
+            <a href="./Carbono.html">Carbono</a>
+            <a href="./Calculadora.html">Calculadora</a>
+            <a href="./Mapas.html">Mapas</a>
+            <a href="./Noticias.html">Noticias</a>
+            <a href="./signin.html">Entrar</a>
+            <a href="./register.html">Cadastrar</a>
+        `;
+    }
+
+    // Adiciona o evento de logout apenas se o botão existir
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('token');
+            window.location.href = './signin.html';
+        });
+    }
+});
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
+            const navigation = document.getElementById('navigation');
+
+            if (token) {
+                // Se o usuário estiver logado, esconde o menu de login/registro e exibe o menu do usuário
+                navigation.innerHTML = `
+                    <a href="./Carbono.html">Carbono</a>
+                    <a href="./Calculadora.html">Calculadora</a>
+                    <a href="./Mapas.html">Mapas</a>
+                    <a href="./Noticias.html">Noticias</a>
+                    <a href="./profile.html">Perfil</a>
+                    <button id="logoutBtn">Logout</button>
+                `;
+            } else {
+                // Se o usuário não estiver logado, exibe o menu de login/registro
+                navigation.innerHTML = `
+                    <a href="./Carbono.html">Carbono</a>
+                    <a href="./Calculadora.html">Calculadora</a>
+                    <a href="./Mapas.html">Mapas</a>
+                    <a href="./Noticias.html">Noticias</a>
+                    <a href="./signin.html">Entrar</a>
+                    <a href="./register.html">Cadastrar</a>
+                `;
+            }
+
+            // Adiciona o evento de logout apenas se o botão existir
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', () => {
+                    localStorage.removeItem('token');
+                    window.location.href = './signin.html';
+                });
+            }
+        });
+
+
     </script>
 </body>
 </html>

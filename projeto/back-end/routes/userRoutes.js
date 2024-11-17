@@ -1,57 +1,69 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 
 const router = express.Router();
 
-// Rota para registro de usuário
+// Rota de cadastro
 router.post('/register', async (req, res) => {
-    try {
-        const { name, email, password } = req.body;
+  const { name, email, password } = req.body;
 
-        // Verificar se o usuário já existe
-        const existingUser = await User.findOne({ email });
-        if (existingUser) {
-            return res.status(400).json({ message: 'Email já registrado.' });
-        }
+  // Verifica se o usuário já existe
+  const userExists = await User.findOne({ email });
+  if (userExists) {
+    return res.status(400).json({ message: 'Email já cadastrado!' });
+  }
 
-        // Criptografar a senha
-        const hashedPassword = await bcrypt.hash(password, 10);
+  // Criptografa a senha
+  const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Criar novo usuário
-        const newUser = new User({ name, email, password: hashedPassword });
-        await newUser.save();
+  // Cria o novo usuário
+  const newUser = new User({ name, email, password: hashedPassword });
+  await newUser.save();
 
-        res.status(201).json({ message: 'Usuário registrado com sucesso!' });
-    } catch (err) {
-        res.status(500).json({ message: 'Erro no servidor.', error: err.message });
-    }
+  res.status(201).json({ message: 'Usuário criado com sucesso!' });
 });
 
-// Rota para login de usuário
+// Rota de login
 router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+  if (!user) {
+    return res.status(400).json({ message: 'Email ou senha inválidos!' });
+  }
+
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
+    return res.status(400).json({ message: 'Email ou senha inválidos!' });
+  }
+
+  // Gera o token de autenticação
+  const token = jwt.sign({ id: user._id }, 'secretkey', { expiresIn: '1h' });
+
+  res.json({ token });
+});
+
+// Rota para pegar os dados do usuário
+router.get('/profile', async (req, res) => {
+    const token = req.headers['authorization']?.split(' ')[1]; // Captura o token JWT do cabeçalho
+
+    if (!token) {
+        return res.status(401).json({ message: 'Token não fornecido.' });
+    }
+
     try {
-        const { email, password } = req.body;
-
-        // Verificar se o usuário existe
-        const user = await User.findOne({ email });
+        const decoded = jwt.verify(token, 'secretkey'); // Verifica o token
+        const user = await User.findById(decoded.id); // Encontra o usuário com o ID decodificado
+        
         if (!user) {
-            return res.status(400).json({ message: 'Email não registrado.' });
+            return res.status(404).json({ message: 'Usuário não encontrado.' });
         }
 
-        // Verificar a senha
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            return res.status(400).json({ message: 'Senha incorreta.' });
-        }
-
-        // Criar e assinar um token JWT
-        const token = jwt.sign({ userId: user._id }, 'your-secret-key', { expiresIn: '1h' });
-
-        res.status(200).json({ token });
-    } catch (err) {
-        res.status(500).json({ message: 'Erro no servidor.', error: err.message });
+        res.json({ name: user.name, email: user.email }); // Retorna os dados do usuário
+    } catch (error) {
+        return res.status(401).json({ message: 'Token inválido ou expirado.' });
     }
 });
 
