@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  app:
+    image: node:14  # Use a versão do Node.js que for compatível com o seu projeto
+    container_name: carbonmate_app
+    volumes:
+      - .:/app  # Mapeia o diretório atual para /app dentro do contêiner
+    working_dir: /app
+    command: npm start  # Ou o comando que você usa para iniciar o aplicativo
+    ports:
+      - "3000:3000"  # Mapeia a porta 3000 do host para a porta 3000 do contêiner
+    environment:
+      - NODE_ENV=production  # Define a variável de ambiente NODE_ENV
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13  # Use a versão do PostgreSQL que for compatível com o seu projeto
+    container_name: carbonmate_db
+    environment:
+      POSTGRES_USER: carbonmate_user
+      POSTGRES_PASSWORD: carbonmate_password
+      POSTGRES_DB: carbonmate_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"  # Mapeia a porta 5432 do host para a porta 5432 do contêiner
+
+volumes:
+  db_data:
