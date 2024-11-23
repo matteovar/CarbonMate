@@ -2,30 +2,24 @@ version: '3.8'
 
 services:
   app:
-    image: node:14  # Use a versão do Node.js que for compatível com o seu projeto
-    container_name: carbonmate_app
-    volumes:
-      - .:/app  # Mapeia o diretório atual para /app dentro do contêiner
-    working_dir: /app
-    command: npm start  # Ou o comando que você usa para iniciar o aplicativo
+    build:
+      context: ./projeto/back-end
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000"  # Mapeia a porta 3000 do host para a porta 3000 do contêiner
+      - "5000:5000"
     environment:
-      - NODE_ENV=production  # Define a variável de ambiente NODE_ENV
+      - MONGO_URL=mongodb://db:27017/carbonmate
     depends_on:
       - db
+    volumes:
+      - ./projeto/back-end:/usr/src/app
 
   db:
-    image: postgres:13  # Use a versão do PostgreSQL que for compatível com o seu projeto
-    container_name: carbonmate_db
-    environment:
-      POSTGRES_USER: carbonmate_user
-      POSTGRES_PASSWORD: carbonmate_password
-      POSTGRES_DB: carbonmate_db
-    volumes:
-      - db_data:/var/lib/postgresql/data
+    image: mongo:latest
     ports:
-      - "5432:5432"  # Mapeia a porta 5432 do host para a porta 5432 do contêiner
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
 
 volumes:
-  db_data:
+  mongo-data:
