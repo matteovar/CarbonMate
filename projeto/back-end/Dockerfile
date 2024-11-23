@@ -1,7 +1,7 @@
-# Use a imagem oficial do Node.js
-FROM node:22
+# Use uma imagem base do Node.js
+FROM node:16
 
-# Defina o diretório de trabalho dentro do container
+# Defina o diretório de trabalho dentro do contêiner
 WORKDIR /usr/src/app
 
 # Copie os arquivos package.json e package-lock.json
@@ -13,8 +13,8 @@ RUN npm install
 # Copie o restante dos arquivos do projeto
 COPY . .
 
-# Exponha a porta que o servidor Node.js estará rodando
+# Expõe a porta que a aplicação usará
 EXPOSE 5000
 
-# Comando para iniciar o servidor
+# Comando para iniciar a aplicação
 CMD ["node", "server.js"]

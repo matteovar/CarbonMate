@@ -2,24 +2,26 @@ version: '3.8'
 
 services:
   app:
-    build:
-      context: ./projeto/back-end
-      dockerfile: Dockerfile
+    build: .
     ports:
       - "5000:5000"
     environment:
       - MONGO_URL=mongodb://db:27017/carbonmate
     depends_on:
       - db
-    volumes:
-      - ./projeto/back-end:/usr/src/app
+    networks:
+      - carbonmate-network
 
   db:
     image: mongo:latest
-    ports:
-      - "27017:27017"
     volumes:
       - mongo-data:/data/db
+    networks:
+      - carbonmate-network
 
 volumes:
   mongo-data:
+
+networks:
+  carbonmate-network:
+    driver: bridge
