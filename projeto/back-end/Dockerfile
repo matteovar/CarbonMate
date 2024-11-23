@@ -13,7 +13,7 @@ RUN npm install
 # Copie o restante dos arquivos do projeto
 COPY . .
 
-# Expões a porta que a aplicação usará
+# Expõe a porta que a aplicação usará
 EXPOSE 5000
 
 # Comando para iniciar a aplicação
