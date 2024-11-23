@@ -12,6 +12,9 @@ const PORT = 5000;
 app.use(bodyParser.json());
 app.use(cors());
 
+// Servir arquivos estáticos da pasta 'view'
+app.use(express.static('view'));
+
 // Conexão com o MongoDB Atlas
 const uri = 'mongodb+srv://Matteo03:Matteo03@cluster0.qmljj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(uri, {
@@ -23,9 +26,8 @@ mongoose.connect(uri, {
 
 app.use('/api/users', userRoutes);
 
-// Rota inicial (opcional)
 app.get('/', (req, res) => {
-  res.send('API do CarbonMate');
+  res.sendFile(__dirname + '/view/index.html');
 });
 
 // Iniciar o servidor
