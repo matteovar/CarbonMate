@@ -13,11 +13,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Conexão com o MongoDB Atlas
-const uri = 'mongodb+srv://Matteo03:Matteo03@cluster0.qmljj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
-mongoose.connect(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+const uri = process.env.MONGO_URL || 'mongodb+srv://Matteo:Matteo@cluster0.qmljj.mongodb.net/nome_do_banco_de_dados?retryWrites=true&w=majority';
+console.log('String de conexão:', uri); // Log para verificar a string de conexão
+
+mongoose.connect(uri)
 .then(() => console.log('Conectado ao MongoDB Atlas'))
 .catch(err => console.error('Erro ao conectar ao MongoDB Atlas:', err));
 
