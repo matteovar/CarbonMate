@@ -12,15 +12,15 @@ const PORT = 5000;
 app.use(bodyParser.json());
 app.use(cors());
 
-// Conexão com o MongoDB
-mongoose.connect('mongodb://db:27017/carbonmate', {
+// Conexão com o MongoDB Atlas
+const uri = 'mongodb+srv://Matteo03:Matteo03@cluster0.qmljj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-  .then(() => console.log('Conectado ao MongoDB'))
-  .catch(err => console.error('Erro ao conectar ao MongoDB:', err));
+.then(() => console.log('Conectado ao MongoDB Atlas'))
+.catch(err => console.error('Erro ao conectar ao MongoDB Atlas:', err));
 
-// Roteamento de usuários
 app.use('/api/users', userRoutes);
 
 // Rota inicial (opcional)

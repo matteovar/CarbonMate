@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 const authMiddleware = (req, res, next) => {
     const authHeader = req.headers['authorization'];
     console.log('Cabeçalho Authorization:', authHeader); // Adiciona log para ver o cabeçalho
@@ -8,7 +10,7 @@ const authMiddleware = (req, res, next) => {
         return res.sendStatus(401); // Retorna 401 se não encontrar token
     }
 
-    jwt.verify(token, 'your-secret-key', (err, user) => {
+    jwt.verify(token, 'secretkey', (err, user) => {
         if (err) {
             console.log('Erro na verificação do token:', err);
             return res.sendStatus(403); // Retorna 403 se o token for inválido
@@ -17,3 +19,5 @@ const authMiddleware = (req, res, next) => {
         next();
     });
 };
+
+module.exports = authMiddleware;
