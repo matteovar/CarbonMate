@@ -27,7 +27,7 @@ app.use('/api/users', userRoutes);
 
 // Rota inicial (opcional)
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/view/index.html');
+  res.sendFile(__dirname + '/CarbonMate/projeto/view/index.html');
 });
 
 // Iniciar o servidor
