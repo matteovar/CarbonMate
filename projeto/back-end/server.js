@@ -27,7 +27,7 @@ mongoose.connect(uri, {
 app.use('/api/users', userRoutes);
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + 'projeto/view/index.html');
+  res.sendFile(__dirname + '/projeto/view/index.html');
 });
 
 // Iniciar o servidor
