@@ -13,9 +13,12 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Conexão com o MongoDB
-mongoose.connect('mongodb://localhost:27017/carbonmate', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://db:27017/carbonmate', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
   .then(() => console.log('Conectado ao MongoDB'))
-  .catch(err => console.log('Erro ao conectar ao MongoDB:', err));
+  .catch(err => console.error('Erro ao conectar ao MongoDB:', err));
 
 // Roteamento de usuários
 app.use('/api/users', userRoutes);
