@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URL=mongodb+srv://Matteo:Matteo@cluster0.qmljj.mongodb.net/carbonmate?retryWrites=true&w=majority
+    networks:
+      - carbonmate-network
+
+networks:
+  carbonmate-network:
+    driver: bridge
