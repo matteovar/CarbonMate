@@ -6,21 +6,9 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - MONGO_URL=mongodb://db:27017/carbonmate
-    depends_on:
-      - db
+      - MONGO_URL=mongodb+srv://Matteo:Matteo@cluster0.qmljj.mongodb.net/nome_do_banco_de_dados?retryWrites=true&w=majority
     networks:
       - carbonmate-network
-
-  db:
-    image: mongo:latest
-    volumes:
-      - mongo-data:/data/db
-    networks:
-      - carbonmate-network
-
-volumes:
-  mongo-data:
 
 networks:
   carbonmate-network:
