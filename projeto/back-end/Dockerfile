@@ -1,14 +1,14 @@
 # Dockerfile
-FROM node:22
+FROM node:latest
 
-WORKDIR /usr/src/app
+WORKDIR /back-end
 
-COPY package*.json ./
+COPY . . 
+
+RUN rm -rf  node_modules
 
 RUN npm install
 
-COPY . .
-
 EXPOSE 5000
 
-CMD ["node", "server.js"]
+CMD ["cpm", "start"]
