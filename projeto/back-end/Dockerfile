@@ -10,8 +10,9 @@ COPY package*.json ./
 # Instale as dependências
 RUN npm install
 
-# Copie o restante dos arquivos do projeto
-COPY . .
+# Copie o restante dos arquivos do projeto (incluindo a pasta view)
+COPY ./../view ./view  
+COPY . .              
 
 # Expõe a porta que a aplicação usará
 EXPOSE 5000
