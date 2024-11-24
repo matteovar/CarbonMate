@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.static('view'));
 
 // Conexão com o MongoDB Atlas
-const uri = process.env.MONGO_URL || 'mongodb+srv://Matteo:Matteo@cluster0.qmljj.mongodb.net/nome_do_banco_de_dados?retryWrites=true&w=majority';
+const uri = process.env.MONGO_URL || 'mongodb+srv://Matteo:Matteo03@cluster0.qmljj.mongodb.net/nome_do_banco_de_dados?retryWrites=true&w=majority';
 console.log('String de conexão:', uri); // Log para verificar a string de conexão
 
 mongoose.connect(uri)
