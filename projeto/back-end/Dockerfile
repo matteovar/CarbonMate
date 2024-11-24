@@ -11,4 +11,4 @@ RUN npm install
 
 EXPOSE 5000
 
-CMD ["cpm", "start"]
+CMD ["node", "server.js"]
