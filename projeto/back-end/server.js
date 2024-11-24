@@ -1,8 +1,8 @@
 const express = require('express');
-const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 const userRoutes = require('./routes/userRoutes');  // Arquivo de rotas para login e cadastro
 const User = require('./models/User');  // Modelo de usuário
 
@@ -13,9 +13,8 @@ const PORT = 5000;
 app.use(bodyParser.json());
 app.use(cors());
 
-// Serve os arquivos estáticos da pasta 'view', que está fora da pasta 'back-end'
-// Usando path.join para garantir que o caminho seja resolvido corretamente
-app.use(express.static(path.join(__dirname, '..', 'view')));
+// Servir arquivos estáticos da pasta 'view'
+app.use(express.static('view'));
 
 // Conexão com o MongoDB Atlas
 const uri = process.env.MONGO_URL || 'mongodb+srv://Matteo03:Matteo03@cluster0.qmljj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
@@ -29,7 +28,7 @@ app.use('/api/users', userRoutes);
 
 // Rota inicial (opcional)
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'view', 'index.html'));  // Ajuste o caminho aqui também
+  app.use(express.static(path.join(__dirname, '..', 'view')));
 });
 
 // Iniciar o servidor
