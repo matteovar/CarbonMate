@@ -19,6 +19,7 @@ app.use(express.static(path.join(__dirname, '..', 'view')));
 
 // Conexão com o MongoDB Atlas
 const uri = process.env.MONGO_URL || 'mongodb+srv://Matteo03:Matteo03@cluster0.qmljj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+console.log('String de conexão:', uri); // Log para verificar a string de conexão
 
 mongoose.connect(uri)
 .then(() => console.log('Conectado ao MongoDB Atlas'))
@@ -26,9 +27,15 @@ mongoose.connect(uri)
 
 app.use('/api/users', userRoutes);
 
-// Rota inicial 
+// Rota inicial (opcional)
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'view', 'index.html'));  // Ajuste o caminho aqui também
+});
+
+// Rota para servir arquivos JSON estáticos (opcional)
+app.get('/data/:filename', (req, res) => {
+  const filePath = path.join(__dirname, '..', 'model', req.params.filename);
+  res.sendFile(filePath);
 });
 
 // Iniciar o servidor
