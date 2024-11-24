@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm install
 
 # Copie o restante dos arquivos do projeto (incluindo a pasta view)
-COPY ./../view ./view  
+COPY ./projeto/view ./view
 COPY . .              
 
 # Expõe a porta que a aplicação usará
