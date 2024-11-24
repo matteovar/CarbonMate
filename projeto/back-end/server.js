@@ -27,7 +27,7 @@ mongoose.connect(uri)
 
 app.use('/api/users', userRoutes);
 
-// Rota inicial (opcional)
+// Rota inicial 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'view', 'index.html'));  // Ajuste o caminho aqui também
 });
