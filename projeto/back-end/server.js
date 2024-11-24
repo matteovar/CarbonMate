@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const path = require('path');
 const userRoutes = require('./routes/userRoutes');  // Arquivo de rotas para login e cadastro
 const User = require('./models/User');  // Modelo de usuário
 
@@ -17,7 +16,7 @@ app.use(cors());
 app.use(express.static('view'));
 
 // Conexão com o MongoDB Atlas
-const uri = process.env.MONGO_URL || 'mongodb+srv://Matteo03:Matteo03@cluster0.qmljj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const uri = process.env.MONGO_URL || 'mongodb+srv://Matteo:Matteo@cluster0.qmljj.mongodb.net/nome_do_banco_de_dados?retryWrites=true&w=majority';
 console.log('String de conexão:', uri); // Log para verificar a string de conexão
 
 mongoose.connect(uri)
@@ -28,7 +27,7 @@ app.use('/api/users', userRoutes);
 
 // Rota inicial (opcional)
 app.get('/', (req, res) => {
-  app.use(express.static(path.join(__dirname, '..', 'view')));
+  res.sendFile(__dirname + '/view/index.html');
 });
 
 // Iniciar o servidor
