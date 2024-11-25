@@ -1,4 +1,3 @@
-/* Estilo para formulários */
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +6,7 @@
 
 body {
     min-height: 100vh;
-    background: url("/projeto/assets/image.png") no-repeat center center fixed;
+    background: url("/projeto/scr/assets/image.png") no-repeat center center fixed;
     background-size: cover;
     background-position: center;
 }
@@ -54,61 +53,33 @@ body {
 .navigation a:hover::before {
     width: 100%;
 }
-
-#message {
-    display: none;
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 5px;
-    z-index: 1000;
-}
-
-.content {
+.container {
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente */
     padding: 20px;
-    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; 
+    width: 100%; /* Ajusta a largura para 90% da tela */
+    max-width: 700px; /* Define uma largura máxima */
+    height: 595px;
+    position: absolute;
     top: 50%;
     left: 50%;
-    border-radius: 8px;
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background-color: rgba(255, 255, 255, 0.8); /* Adicione um fundo para melhorar a legibilidade */
     transform: translate(-50%, -50%);
 }
 
-.form-group {
-    margin-bottom: 15px;
+.iframe-container {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height:100px;
+    min-height: 500px; /* Define uma altura mínima para o contêiner */
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.form-group input {
-    width: 70%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.form-group button {
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.form-group button:hover {
-    background-color: #555;
+.iframe-container iframe {
+    width: 100%;
+    height: 100%; /* Altura 100% para ocupar todo o contêiner */
+    border: none; /* Remove a borda do iframe */
 }
 
 footer {
@@ -121,4 +92,3 @@ footer {
     color: white;
     text-align: center;
 }
-

@@ -1,14 +1,15 @@
-version: '3.8'
 
 services:
-  app:
+  website:
     build: 
-      context: ./projeto/back-end
+      context: ./back-end
       dockerfile: Dockerfile      
     ports:
       - "5000:5000"
     environment:
       - MONGO_URL=mongodb+srv://Matteo03:Matteo03@cluster0.qmljj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+    volumes:
+      - ./projeto/scr/view:/usr/src/view
     networks:
       - carbonmate-network
 
