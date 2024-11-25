@@ -8,7 +8,7 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - MONGO_URL=mongodb://mongo-carbonmate:27017/carbonmate
+      - MONGO_URL=mongodb+srv://Matteo03:Matteo03@cluster0.qmljj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
     networks:
       - carbonmate-network
 
